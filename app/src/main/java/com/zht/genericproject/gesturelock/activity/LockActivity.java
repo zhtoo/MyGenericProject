@@ -1,8 +1,10 @@
 package com.zht.genericproject.gesturelock.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
 
+import com.zht.genericproject.R;
+import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.gesturelock.view.LockPatternView;
 
 import java.util.List;
@@ -11,27 +13,28 @@ import java.util.List;
 /**
  * Description: 手势密码登录页面
  */
-public class LockActivity extends AppCompatActivity implements LockPatternView.OnPatternListener {
-//    private LockActBinding binding;
-//    private List<Cell> lockPattern;
-//    private              ImageView[] pointers = new ImageView[9];
-//    private static final int         TIME     = 1000;
-//    private Handler mHandler = new Handler();
-//
-//    private static final int MAX_AVAILABLE_TIMES = Integer.MAX_VALUE;
-//    boolean isTouch = SPUtil.getBoolean("isTouch", true);
-//    int i = 1;
+public class LockActivity extends BaseActivity implements LockPatternView.OnPatternListener {
+    //    private LockActBinding binding;
+    private List<LockPatternView.Cell> lockPattern;
+    //    private              ImageView[] pointers = new ImageView[9];
+    private static final int TIME = 1000;
+    private Handler mHandler = new Handler();
+    //
+    private static final int MAX_AVAILABLE_TIMES = Integer.MAX_VALUE;
+    //    boolean isTouch = SPUtil.getBoolean("isTouch", true);
+    int i = 1;
 //    private CustomDialog dialog;
 //    private FingerPrinterView fingerPrinterView;
 //    private int fingerErrorNum = 0; // 指纹错误次数
 //    RxFingerPrinter rxfingerPrinter;
+
 //    boolean isFirstIn = SPUtil.getBoolean(BaseParams.SP_IS_FIRST_INE_LOCK+ BaseParams.getVersion(), true);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        binding = DataBindingUtil.setContentView(this, R.layout.lock_act);
+        setContentView(R.layout.lock_act);
 //        fingerPrinterView = (FingerPrinterView) findViewById(R.id.fpv);
 //        /**
 //         * 给指纹识别在解锁时添加对话框
@@ -206,9 +209,6 @@ public class LockActivity extends AppCompatActivity implements LockPatternView.O
 //    }
 
 
-
-
-
     @Override
     public void onPatternStart() {
 
@@ -273,7 +273,6 @@ public class LockActivity extends AppCompatActivity implements LockPatternView.O
     }
 
 
-
     //    @Override
 //    public void onBackPressed() {
 //        ActivityUtils.onExit();
@@ -291,7 +290,6 @@ public class LockActivity extends AppCompatActivity implements LockPatternView.O
 //        super.onDestroy();
 //        rxfingerPrinter.unSubscribe(this);
 //    }
-
 
 
 }

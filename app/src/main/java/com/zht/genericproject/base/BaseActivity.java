@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.zht.genericproject.R;
+import com.zht.genericproject.gesturelock.logic.LockLogic;
 import com.zht.genericproject.util.ActivityUtils;
 import com.zht.genericproject.util.DensityUtils;
 import com.zht.genericproject.util.PermissionCheck;
@@ -48,7 +49,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //TODO:注册锁屏逻辑
-       // LockLogic.getInstance().checkLock(this);
+        LockLogic.getInstance().checkLock(this);
     }
 
     @Override

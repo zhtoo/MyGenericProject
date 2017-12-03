@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lock_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:background="@android:color/holo_blue_dark"
+            android:id="@+id/lock_setup_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lock_setup_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="重新设置手势密码"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp" />
+
+        <com.zht.genericproject.gesturelock.view.LockPatternView
+            android:id="@+id/lock_pattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/lock_setup_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="重新设置手势密码"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

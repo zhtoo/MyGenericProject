@@ -1,5 +1,8 @@
 package com.zht.genericproject.activity;
 
+import android.os.Bundle;
+
+import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseActivity;
 
 /**
@@ -11,6 +14,17 @@ import com.zht.genericproject.base.BaseActivity;
 
 public class RegisterFirstActivty extends BaseActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_egisterr_first);
 
-
+        /**
+         Intent intent = new Intent();
+         intent.putExtra(BundleKeys.PHONE, phone);
+         intent.putExtra(BundleKeys.CODE, code);
+         ActivityUtils.push(RegisterSecondAct.class, intent);
+         ActivityUtils.peek().finish();
+         */
+    }
 }

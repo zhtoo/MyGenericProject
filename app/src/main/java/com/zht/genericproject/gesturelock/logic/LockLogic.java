@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.zht.genericproject.activity.LoginActivity;
 import com.zht.genericproject.activity.RegisterFirstActivty;
 import com.zht.genericproject.activity.RegisterSecondActivty;
+import com.zht.genericproject.activity.SplashActivity;
 import com.zht.genericproject.gesturelock.activity.LockActivity;
 import com.zht.genericproject.gesturelock.activity.LockModifyPwdActivty;
 import com.zht.genericproject.gesturelock.activity.LockStepActivty;
@@ -51,7 +52,7 @@ public final class LockLogic {
         registerIgnoreActivity(RegisterFirstActivty.class);
         registerIgnoreActivity(RegisterSecondActivty.class);
         // 引导页
-//        registerIgnoreActivity(SplashAct.class);
+        registerIgnoreActivity(SplashActivity.class);
 //        registerIgnoreActivity(GuideAct.class);
     }
 

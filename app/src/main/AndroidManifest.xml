@@ -24,9 +24,10 @@
 
         <!--主界面-->
         <activity android:name=".activity.MainActivity"/>
-
         <!--登录界面-->
         <activity android:name=".activity.LoginActivity"/>
+        <!--手势密码设置界面-->
+        <activity android:name=".gesturelock.activity.LockStepActivty"/>
 
 
     </application>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Process;
 
+import com.zht.genericproject.gesturelock.logic.LockLogic;
 import com.zht.genericproject.listener.GestureLockWatcher;
 
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class MyApplication extends Application {
         watcher.setOnScreenPressedListener(new GestureLockWatcher.OnScreenPressedListener() {
             @Override
             public void onPressed() {
-                //LockLogic.getInstance().start();
+                LockLogic.getInstance().start();
                 //TODO:锁屏开始
             }
         });

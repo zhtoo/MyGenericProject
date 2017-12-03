@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.zht.genericproject.R;
+import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.base.BaseParams;
-import com.zht.genericproject.util.ActivityUtils;
 import com.zht.genericproject.util.SPUtil;
 import com.zht.genericproject.util.ToastUtil;
 
@@ -23,8 +22,7 @@ import java.lang.ref.WeakReference;
  * @describe:
  */
 
-public class SplashActivity extends AppCompatActivity {
-
+public class SplashActivity extends BaseActivity {
 
     // 跳转引导页
     private static final int GO_GUIDE      = 0x01;
@@ -49,9 +47,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        ActivityUtils.push(this);
-
         // TODO: 2017/12/1  联网检验是否更新+是否显示向导页
         checkUpdate();
         // TODO: 2017/12/1  获取首页banner图,缓存到内存中

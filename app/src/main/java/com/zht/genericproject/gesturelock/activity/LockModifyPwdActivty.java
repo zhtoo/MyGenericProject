@@ -1,9 +1,9 @@
 package com.zht.genericproject.gesturelock.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.gesturelock.view.LockPatternView;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Description: 手势密码修改页面
  */
-public class LockModifyPwdActivty extends AppCompatActivity implements LockPatternView.OnPatternListener {
+public class LockModifyPwdActivty extends BaseActivity implements LockPatternView.OnPatternListener {
 //    private LockModifyActBinding binding;
 //    private List<Cell> lockPattern;
 //    private static final int         TIME     = 1000;

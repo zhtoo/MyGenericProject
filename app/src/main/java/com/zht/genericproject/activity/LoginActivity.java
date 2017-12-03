@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.zht.genericproject.R;
+import com.zht.genericproject.base.BaseActivity;
+import com.zht.genericproject.gesturelock.activity.LockStepActivty;
 import com.zht.genericproject.util.ActivityUtils;
 import com.zht.genericproject.util.ToastUtil;
 
@@ -22,7 +23,7 @@ import com.zht.genericproject.util.ToastUtil;
  * @describe:
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
    private EditText mName;
    private EditText mPassword;
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityUtils.push(this);
         setContentView(R.layout.activity_login);
         initView();
         initListener();
@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void initView() {
-
      mName =(EditText)  findViewById(R.id.login_name);
      mPassword =(EditText)  findViewById(R.id.login_password);
      mBtn =(Button)  findViewById(R.id.login_btn);
@@ -66,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 checkLogin();
                 break;
             case R.id.login_froget_password:
+                startActivity(new Intent(this, LockStepActivty.class));
                 break;
             case R.id.login_register_account:
                 break;

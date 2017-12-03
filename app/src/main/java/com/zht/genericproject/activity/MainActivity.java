@@ -1,17 +1,15 @@
 package com.zht.genericproject.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.zht.genericproject.R;
-import com.zht.genericproject.util.ActivityUtils;
+import com.zht.genericproject.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityUtils.push(this);
         setContentView(R.layout.activity_main);
     }
 }
