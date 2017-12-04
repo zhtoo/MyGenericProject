@@ -1,4 +1,4 @@
-package com.zht.genericproject.gesturelock.view;
+package com.zht.genericproject.gesturelock.logic;
 
 /**
  * Description: 手势密码信息持久化类

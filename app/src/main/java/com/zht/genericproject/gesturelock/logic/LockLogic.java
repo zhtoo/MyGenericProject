@@ -11,7 +11,6 @@ import com.zht.genericproject.activity.SplashActivity;
 import com.zht.genericproject.gesturelock.activity.LockActivity;
 import com.zht.genericproject.gesturelock.activity.LockModifyPwdActivty;
 import com.zht.genericproject.gesturelock.activity.LockStepActivty;
-import com.zht.genericproject.gesturelock.view.FingerPasswordBean;
 import com.zht.genericproject.util.log.Logger;
 
 import java.util.HashSet;

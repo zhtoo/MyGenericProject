@@ -31,7 +31,7 @@ public class SplashActivity extends BaseActivity {
     // 页面跳转逻辑
     private static final int DO_HANDLER    = 0x99;
     // 最小显示时间
-    private static final int SHOW_TIME_MIN = 1000;//1秒
+    private static final int SHOW_TIME_MIN = 300;//300ms
 
     // 开始时间
     private static long          mStartTime;
@@ -53,7 +53,6 @@ public class SplashActivity extends BaseActivity {
         getBanner();
         mHandler = new SplashHandler(this);
 
-
     }
 
 
@@ -73,7 +72,6 @@ public class SplashActivity extends BaseActivity {
     private void getBanner() {
 
 
-
     }
 
     /**
@@ -82,8 +80,9 @@ public class SplashActivity extends BaseActivity {
      */
     private void checkUpdate() {
         ToastUtil.showToast("我去联网检查更新版本了！");
-    }
+        // TODO: 2017/12/4 比较结果放到SP中，下载完后将SP中的值改变
 
+    }
 
 
     /**
@@ -102,6 +101,7 @@ public class SplashActivity extends BaseActivity {
             // 计算一下加载的时间
             long loadingTime = System.currentTimeMillis() - mStartTime;
             switch (msg.what) {
+                /**第一次判断*/
                 case DO_HANDLER:
                     // 取得相应的值，如果没有该值，说明还未写入，用true作为默认值
                     boolean isFirstIn = SPUtil.getBoolean(BaseParams.SP_IS_FIRST_INE + "-" + BaseParams.getVersion(), true);

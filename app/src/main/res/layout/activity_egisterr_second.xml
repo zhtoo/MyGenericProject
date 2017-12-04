@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/register_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入昵称" />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="登录密码由8&#8211;16位数字及字母组成" />
+
+    <EditText
+        android:id="@+id/register_password_affirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请再次输入密码" />
+
+    <TextView
+        android:id="@+id/register_password_conflicting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="两次密码不一致"
+        android:textColor="#ffbc1b"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/register_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册"/>
+
+
+</LinearLayout>

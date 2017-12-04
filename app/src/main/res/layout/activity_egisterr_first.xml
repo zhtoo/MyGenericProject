@@ -23,17 +23,23 @@
             android:hint="请输入验证码" />
 
         <Button
+            android:id="@+id/register_get_verification_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="获取验证码" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/register_by_phone"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="注册" />
+        android:hint="请输入邀请码" />
+
+    <Button
+        android:id="@+id/register_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交进入下一步" />
 
 
 </LinearLayout>

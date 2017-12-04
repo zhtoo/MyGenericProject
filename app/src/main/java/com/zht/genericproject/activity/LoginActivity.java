@@ -40,9 +40,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-
-
-
     private void initView() {
      mName =(EditText)  findViewById(R.id.login_name);
      mPassword =(EditText)  findViewById(R.id.login_password);
@@ -68,6 +65,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(new Intent(this, LockStepActivty.class));
                 break;
             case R.id.login_register_account:
+                startActivity(new Intent(this, RegisterFirstActivty.class));
                 break;
         }
     }
@@ -90,8 +88,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             intent.setClass(activity, MainActivity.class);
             ActivityUtils.push(MainActivity.class, intent);
             ActivityUtils.pop(activity);
-
-
         }
 
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!--手机号找回密码-->
+    <LinearLayout
+        android:id="@+id/findpwd_first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <!--找回密码第一步-->
+        <EditText
+            android:id="@+id/findpwd_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入您注册的手机号码"
+            android:inputType="number"
+            android:maxLength="11"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/findpwd_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:maxLength="6"/>
+
+            <Button
+                android:id="@+id/findpwd_timebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="获取验证码"/>
+        </LinearLayout>
+
+        <!--找回密码-->
+        <Button
+            android:id="@+id/findpwd_first_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一步"/>
+
+    </LinearLayout>
+
+    <!--下一步跳转的界面-->
+    <LinearLayout
+        android:id="@+id/findpwd_second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/findpwd_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="登录密码由8&#8211;16位数字及字母组成"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:textColor="#222222"/>
+
+        <EditText
+            android:id="@+id/findpwd_pwd_affirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:textColor="#222222"/>
+
+        <!--两次密码不一致-->
+        <TextView
+            android:id="@+id/findpwd_pwd_confulict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="两次密码不一致"
+            android:textColor="#ffbc1b"
+            android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/findpwd_end_sure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="确定"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -22,8 +22,7 @@ import java.util.List;
  * Description: 手势密码设置界面
  */
 public class LockStepActivty extends BaseActivity implements LockPatternView.OnPatternListener {
-    private static final String CONFIRM = "confirm";
-    private static final int COLOR_TEXT_NORMAL = 0x9900A8FF;
+
     private TextView tv_hint;
     private TextView tv_again;
     private LockPatternView lockPatternView;
@@ -106,7 +105,6 @@ public class LockStepActivty extends BaseActivity implements LockPatternView.OnP
                 } else {
                     tv_hint.setText("与上次绘制不一致，请重新绘制");
                     tv_hint.setTextColor(Color.RED);
-                    //tv_again.setVisibility(View.VISIBLE);
                     lockPatternView.setDisplayMode(LockPatternView.DisplayMode.Wrong);
                     mHandler.postDelayed(new Runnable() {
                         @Override

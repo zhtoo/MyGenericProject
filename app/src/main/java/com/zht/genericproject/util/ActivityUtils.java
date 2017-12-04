@@ -83,7 +83,7 @@ public final class ActivityUtils {
     /**
      * 距上次尝试退出允许的最大时间差
      */
-    private static final long MAX_DOUBLE_EXIT_MILLS = 800;
+    private static final long MAX_DOUBLE_EXIT_MILLS = 2000;
 
     /**
      * 退出APP

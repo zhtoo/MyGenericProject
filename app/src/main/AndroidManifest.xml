@@ -30,6 +30,10 @@
         <activity android:name=".gesturelock.activity.LockStepActivty"/>
 
 
+        <!--注册界面-->
+        <activity android:name=".activity.RegisterFirstActivty"/>
+        <activity android:name=".activity.RegisterSecondActivty"/>
+
     </application>
 
 </manifest>
