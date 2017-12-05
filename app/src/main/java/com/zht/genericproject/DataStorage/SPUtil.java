@@ -1,4 +1,4 @@
-package com.zht.genericproject.util;
+package com.zht.genericproject.DataStorage;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,18 +21,14 @@ import java.util.Set;
 
 /**
  * Created by zhtoo on 2017/6/24.
- * Description: SharePreference工具类
+ * Description: SharePreference的包装类
  */
 public class SPUtil {
 
     private SharedPreferences sp;
-    /**
-     * 上下文
-     */
+    /** 上下文*/
     private Context context;
-    /**
-     * 保存在手机里面的文件名
-     */
+    /** 保存在手机里面的文件名*/
     private final static String SP_NAME = BaseParams.SP_NAME;
 
     private SPUtil() {
@@ -221,6 +217,8 @@ public class SPUtil {
     public static Map<String, ?> getAll() {
         return SPUtil.getInstance().getSp().getAll();
     }
+
+
     ///////////////////////////////////////////////////////////////////////////
     // Object 以参数名的形式存入SP
     ///////////////////////////////////////////////////////////////////////////

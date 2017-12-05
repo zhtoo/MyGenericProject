@@ -1,10 +1,20 @@
-package com.zht.genericproject.util;
+package com.zht.genericproject.DataStorage;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
 /**
  * Description: 软引用map
+ * 1.  SoftReference<T>：软引用
+ * -->当虚拟机内存不足时，将会回收它指向的对象；
+ * 需要获取对象时，可以调用get方法。
+ * 2.  WeakReference<T>：弱引用
+ * -->随时可能会被垃圾回收器回收，不一定要等到虚拟机内存不足时才强制回收。
+ * 要获取对象时，同样可以调用get方法。
+ * <p>
+ * 对比：
+ * WeakReference一般用来防止内存泄漏，要保证内存被虚拟机回收，
+ * SoftReference多用作来实现缓存机制(cache);
  */
 public class SoftMap<K, V> {
     private SoftReference<HashMap<K, V>> innerMap = new SoftReference<>(null);

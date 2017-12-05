@@ -23,43 +23,33 @@ public final class ActivityUtils {
     // 堆栈管理对象
     private static final ActivityStack STACK = new ActivityStack();
 
-    /**
-     * 将activity推到堆栈中
-     */
+    /**将activity推到堆栈中*/
     public static void push(Activity activity) {
         Logger.i(TAG, "push = " + activity);
         STACK.pushToStack(activity);
     }
 
-    /**
-     * 从堆栈中弹出顶部activity
-     */
+    /** 从堆栈中弹出顶部activity*/
     public static void pop() {
         Activity activity = STACK.popFromStack();
         activity.finish();
         Logger.i(TAG, "pop = " + activity);
     }
 
-    /**
-     * 从堆栈中删除该activity，可能是null
-     */
+    /**从堆栈中删除该activity，可能是null*/
     public static void remove(Activity activity) {
         Logger.i(TAG, "remove = " + activity);
         STACK.removeFromStack(activity);
     }
 
-    /**
-     * peek top activity from stack, maybe is null
-     */
+    /** peek top activity from stack, maybe is null*/
     public static Activity peek() {
         Activity activity = STACK.peekFromStack();
         Logger.i(TAG, "peek = " + activity);
         return activity;
     }
 
-    /**
-     * pop activities until this Activity
-     */
+    /** pop activities until this Activity*/
     @SuppressWarnings("unchecked")
     public static <T extends Activity> T popUntil(final Class<T> clazz) {
         if (clazz != null) {
@@ -76,18 +66,12 @@ public final class ActivityUtils {
         return null;
     }
 
-    /**
-     * 最后一次尝试退出的时间戳
-     */
+    /** 最后一次尝试退出的时间戳*/
     private static       long lastExitPressedMills  = 0;
-    /**
-     * 距上次尝试退出允许的最大时间差
-     */
+    /** 距上次尝试退出允许的最大时间差*/
     private static final long MAX_DOUBLE_EXIT_MILLS = 2000;
 
-    /**
-     * 退出APP
-     */
+    /** 退出APP*/
     public static void onExit() {
         final long now = System.currentTimeMillis();
         if (now <= lastExitPressedMills + MAX_DOUBLE_EXIT_MILLS) {
@@ -103,29 +87,7 @@ public final class ActivityUtils {
         }
     }
 
-    /**
-     * 退出APP
-     */
-//    public static void onExitFrg(MainVM viewmodel) {
-//        final long now = System.currentTimeMillis();
-//        if (now <= lastExitPressedMills + MAX_DOUBLE_EXIT_MILLS) {
-//            viewmodel.clearFrg();
-//            finishAll();
-//            MyApplication.getInstance().watcher.stopWatch();
-//            System.exit(0);
-//        } else {
-//            Context context = peek();
-//            if (context != null) {
-//                Toast.makeText(context, context.getString(R.string.app_exit), Toast.LENGTH_SHORT).show();
-//            }
-//            lastExitPressedMills = now;
-//        }
-//    }
-
-
-    /**
-     * 当APP退出的时候，结束所有Activity
-     */
+    /**当APP退出的时候，结束所有Activity*/
     private static void finishAll() {
         Logger.i(TAG, "********** Exit **********");
         while (!STACK.isEmpty()) {
@@ -137,30 +99,22 @@ public final class ActivityUtils {
         }
     }
 
-    /**
-     * activity堆栈，用以管理APP中的所有activity
-     */
+    /** activity堆栈，用以管理APP中的所有activity*/
     private static class ActivityStack {
         // activity堆对象
         private final Stack<WeakReference<Activity>> activityStack = new Stack<>();
 
-        /**
-         * @return 堆是否为空
-         */
+        /** @return 堆是否为空*/
         public boolean isEmpty() {
             return activityStack.isEmpty();
         }
 
-        /**
-         * 向堆中push此activity
-         */
+        /** 向堆中push此activity*/
         public void pushToStack(Activity activity) {
             activityStack.push(new WeakReference<>(activity));
         }
 
-        /**
-         * @return 从堆栈中pop出一个activity对象
-         */
+        /** @return 从堆栈中pop出一个activity对象*/
         public Activity popFromStack() {
             while (!activityStack.isEmpty()) {
                 final WeakReference<Activity> weak     = activityStack.pop();
@@ -172,9 +126,7 @@ public final class ActivityUtils {
             return null;
         }
 
-        /**
-         * @return 从堆栈中查看一个对象，且不会pop
-         */
+        /** @return 从堆栈中查看一个对象，且不会pop*/
         public Activity peekFromStack() {
             while (!activityStack.isEmpty()) {
                 final WeakReference<Activity> weak     = activityStack.peek();
@@ -188,9 +140,7 @@ public final class ActivityUtils {
             return null;
         }
 
-        /**
-         * @return 从堆栈中删除指定对象
-         */
+        /** @return 从堆栈中删除指定对象*/
         public boolean removeFromStack(Activity activity) {
             for (WeakReference<Activity> weak : activityStack) {
                 final Activity act = weak.get();
@@ -201,8 +151,10 @@ public final class ActivityUtils {
             return false;
         }
     }
+
+
     ///////////////////////////////////////////////////////////////////////////
-    // 启动activity
+    // activity的启动和关闭+获得intent
     ///////////////////////////////////////////////////////////////////////////
 
     /**
@@ -253,6 +205,17 @@ public final class ActivityUtils {
         return intent;
     }
 
+
+    /**
+     * 关闭Activity
+     */
+    public static void pop(final Activity a, int code, Intent intent) {
+        if (intent != null) {
+            a.setResult(code, intent);
+        }
+        a.finish();
+    }
+
     public static void pop(final Activity a) {
         pop(a, null);
     }
@@ -265,13 +228,5 @@ public final class ActivityUtils {
         pop(a, Activity.RESULT_OK, intent);
     }
 
-    /**
-     * 关闭Activity
-     */
-    public static void pop(final Activity a, int code, Intent intent) {
-        if (intent != null) {
-            a.setResult(code, intent);
-        }
-        a.finish();
-    }
+
 }

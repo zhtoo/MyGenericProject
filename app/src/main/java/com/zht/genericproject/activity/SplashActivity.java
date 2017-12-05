@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.base.BaseParams;
-import com.zht.genericproject.util.SPUtil;
+import com.zht.genericproject.DataStorage.SPUtil;
 import com.zht.genericproject.util.ToastUtil;
 
 import java.lang.ref.WeakReference;

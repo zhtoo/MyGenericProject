@@ -174,7 +174,7 @@ public final class LockLogic {
             bean.setPassword(password);
             saveEntity(bean);
         } else {
-            //TODO:需要修改
+            //TODO:需要修改，
 //            OauthTokenMo oauthTokenMo = SharedInfo.getInstance().getValue(OauthTokenMo.class);
 //            SPUtil.remove(FingerPasswordBean.class, oauthTokenMo.getUserId());
         }

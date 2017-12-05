@@ -9,6 +9,8 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        // dex突破65535的限制
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,6 +28,12 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.1.0'
     testCompile 'junit:junit:4.12'
+    //添加支持 dex突破65535的限制 在MyApplication需要继承MultiDexApplication
+    //存在弊端。
+    compile 'com.android.support:multidex:1.0.1'
+
+
+    //加密jar包
     compile files('libs/bcprov-jdk16-1.46.jar')
     //butterknife
     compile 'com.jakewharton:butterknife:8.5.0'
