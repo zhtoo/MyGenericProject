@@ -20,7 +20,7 @@ public class BaseParams {
 
     //SP文件名
     public static final String SP_NAME = "my_generic_project";
-    public static final String SP_IS_FIRST_INE = "is_first_in";
+    public static final String SP_IS_FIRST_IN = "is_first_in";
     /**
      * 加密是需要使用的密钥
      * DES加解密时KEY必须是16进制字符串,不可小于8位

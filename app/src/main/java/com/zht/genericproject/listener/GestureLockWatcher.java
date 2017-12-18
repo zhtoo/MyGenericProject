@@ -9,7 +9,7 @@ import android.content.IntentFilter;
  * Description: OS功能按键监听
  */
 public class GestureLockWatcher {
-    static final String TAG = "GestureLockWatcher";
+    private final String TAG = getClass().getSimpleName();
     private Context mContext;
     private IntentFilter mFilter;
     private OnScreenPressedListener mListener;

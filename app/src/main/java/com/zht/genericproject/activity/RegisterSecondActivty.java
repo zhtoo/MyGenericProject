@@ -50,6 +50,8 @@ public class RegisterSecondActivty extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
+        // TODO: 2017/12/18 在这里跳转到手势设置界面（是否有必要？）
         Intent intent = new Intent();
         ActivityUtils.push(LoginActivity.class, intent);
         ActivityUtils.peek().finish();

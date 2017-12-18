@@ -1,15 +1,17 @@
 package com.zht.genericproject.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
+import com.zht.genericproject.DataStorage.SPUtil;
 import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.base.BaseParams;
-import com.zht.genericproject.DataStorage.SPUtil;
 import com.zht.genericproject.util.ToastUtil;
 
 import java.lang.ref.WeakReference;
@@ -31,7 +33,7 @@ public class SplashActivity extends BaseActivity {
     // 页面跳转逻辑
     private static final int DO_HANDLER    = 0x99;
     // 最小显示时间
-    private static final int SHOW_TIME_MIN = 300;//300ms
+    private static final int SHOW_TIME_MIN = 1000;//1000ms
 
     // 开始时间
     private static long          mStartTime;
@@ -47,6 +49,16 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        hideTitleBar();
+        //得到TextView控件对象
+        TextView textView =(TextView)findViewById(R.id.splash_text);
+        //将字体文件保存在assets/fonts/目录下，创建Typeface对象
+        //FZXKJW.TTF  方正行楷简体
+        //FZZJ-FOJW.TTF 方正字迹-仿欧简体
+        //unifont.ttf  这是啥字体
+        Typeface typeFace =Typeface.createFromAsset(getAssets(),"fonts/FZZJ-FOJW.TTF");
+        //使用字体
+        textView.setTypeface(typeFace);
         // TODO: 2017/12/1  联网检验是否更新+是否显示向导页
         checkUpdate();
         // TODO: 2017/12/1  获取首页banner图,缓存到内存中
@@ -104,7 +116,7 @@ public class SplashActivity extends BaseActivity {
                 /**第一次判断*/
                 case DO_HANDLER:
                     // 取得相应的值，如果没有该值，说明还未写入，用true作为默认值
-                    boolean isFirstIn = SPUtil.getBoolean(BaseParams.SP_IS_FIRST_INE + "-" + BaseParams.getVersion(), true);
+                    boolean isFirstIn = SPUtil.getBoolean(BaseParams.SP_IS_FIRST_IN + "-" + BaseParams.getVersion(), true);
                     // 判断程序与第几次运行，如果是第一次运行则跳转到引导界面，否则跳转到主界面 且引导页开启
                     if (isFirstIn) {
                        sendEmptyMessage(GO_GUIDE);
@@ -133,11 +145,11 @@ public class SplashActivity extends BaseActivity {
             }
         }
 
-        // 进入 LoginActivity
+        // 进入 GuideActivity
         Runnable goToGuideActivity = new Runnable() {
             @Override
             public void run() {
-                activity.get().startActivity(new Intent(activity.get(), LoginActivity.class));
+                activity.get().startActivity(new Intent(activity.get(), GuideActivity.class));
                 activity.get().finish();
             }
         };

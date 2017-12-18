@@ -1,9 +1,9 @@
 package com.zht.genericproject.gesturelock.logic;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.text.TextUtils;
 
+import com.zht.genericproject.activity.GuideActivity;
 import com.zht.genericproject.activity.LoginActivity;
 import com.zht.genericproject.activity.RegisterFirstActivty;
 import com.zht.genericproject.activity.RegisterSecondActivty;
@@ -22,7 +22,7 @@ import java.util.Set;
 public final class LockLogic {
     private static final String TAG                 = "LockLogic";
     /** 锁屏 或者 返回Home界面 超过多少时间后, 出现手势解锁界面 */
-    private final static long                           MILLS_WAIT_LOCK     = 5 * 1000;
+    private final static long                           MILLS_WAIT_LOCK     = 5 * 1000;//5s
     /** 锁屏 或者 按了 Home 按键的时间 */
     private              long                           millsStartTime      = -1L;
     /** 忽略的Activity */
@@ -50,9 +50,10 @@ public final class LockLogic {
         // 注册页
         registerIgnoreActivity(RegisterFirstActivty.class);
         registerIgnoreActivity(RegisterSecondActivty.class);
-        // 引导页
+        // 闪屏页
         registerIgnoreActivity(SplashActivity.class);
-//        registerIgnoreActivity(GuideAct.class);
+        // 引导页
+        registerIgnoreActivity(GuideActivity.class);
     }
 
     public static LockLogic getInstance() {
@@ -73,13 +74,17 @@ public final class LockLogic {
     public boolean checkLock(final Activity activity) {
         boolean isOpen = isFingerPasswordOpened();
         Logger.d(TAG, "isFingerPasswordOpened = " + isOpen);
+        //如果手势密码是打开的
         if (isOpen) {
-            if (!LockLogic.getInstance().isIgnoreActivity(activity) && (isFirstIn() || LockLogic.getInstance().isElapsedEnough())) {
+            if (!LockLogic.getInstance().isIgnoreActivity(activity) //如果不是需要忽略的activity才进入
+                    && (isFirstIn() || LockLogic.getInstance().isElapsedEnough())//第一次进入或者APP在后台运行的时间足够长
+                    ) {
                 isFirstIn = false;
                 Logger.i(TAG, "from " + activity.getClass().getSimpleName());
-                activity.startActivity(new Intent(activity, LockActivity.class));
+             //   activity.startActivity(new Intent(activity, LockActivity.class));
                 return true;
             }
+            //重置开始时间（这个时间是记录锁屏开始的时间）
             millsStartTime = -1L;
         } else {
             // 用户已登录，却没有开启手势密码，则到手势密码设置页面
@@ -87,7 +92,7 @@ public final class LockLogic {
             if (true/*MyApplication.getInstance().isLand()*/) {
                 if (!LockLogic.getInstance().isIgnoreActivity(activity)) {
                     isFirstIn = false;
-                    activity.startActivity(new Intent(activity, LockStepActivty.class));
+                  //  activity.startActivity(new Intent(activity, LockStepActivty.class));
                 }
             }
         }

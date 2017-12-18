@@ -18,7 +18,8 @@ import java.util.List;
 
 
 /**
- * Description: 手势密码登录页面
+ * @Description:手势密码登录页面
+ * 第一次使用APP或者APP退出到后台太长时间
  */
 public class LockActivity extends BaseActivity implements LockPatternView.OnPatternListener {
 

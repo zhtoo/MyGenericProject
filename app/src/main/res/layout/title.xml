@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_titlebar"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#f2f2f2f2"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <!--这个是隐藏的布局，然后通过动态的设置高度达到效果-->
+    <LinearLayout
+        android:id="@+id/transparent_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
+    <!--标题状态栏-->
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical">
+
+        <!--左边返回按钮-->
+        <LinearLayout
+            android:id="@+id/bar_left_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bar_left_image"
+                android:layout_width="20dp"
+                android:layout_height="3dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回"/>
+
+        </LinearLayout>
+
+        <!--右边按钮-->
+        <LinearLayout
+            android:id="@+id/bar_right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bar_right_text"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="保存"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/bar_right_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginRight="15dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center"
+            android:text="标题栏"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.zht.genericproject.gesturelock.logic.LockLogic;
 import com.zht.genericproject.listener.GestureLockWatcher;
+import com.zht.genericproject.util.log.CrashHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class MyApplication extends MultiDexApplication {
     private static Handler mMainThreadHandler;
     /**主线程id*/
     private static int mMainThreadId;
-    /**用于内存缓存的MAP*/
+    /**用于内存缓存的Map*/
     private Map<String, String> mMemProtocolCacheMap = new HashMap<>();
     /** 用于监听APP是否到后台*/
     private static GestureLockWatcher watcher;
@@ -116,7 +117,7 @@ public class MyApplication extends MultiDexApplication {
         //主线程的线程id
         mMainThreadId = android.os.Process.myTid();
         // 抓取异常LOG，保存在本地
-        // CrashHandler.getInstance().init(this);
+         CrashHandler.getInstance().init(this);
 
         // 监听APP是否到后台
         watcher = new GestureLockWatcher(this);

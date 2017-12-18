@@ -12,4 +12,12 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="Hello World!\nThis is my first generic project.\nYou can look my code from this project.\ngit adress:https:www.github.com/zhtoo/MyGenericProject.git"/>
+
+
+
+
+
+
+
+
 </RelativeLayout>

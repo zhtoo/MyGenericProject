@@ -7,6 +7,7 @@ import android.telephony.TelephonyManager;
 
 /**
  * Created by zhanghaitao on 2017/5/19.
+ * @DES：网络状态检查。
  */
 
 public class NetStatusUtil {

@@ -57,6 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.login_btn:
                 checkLogin();
@@ -81,9 +82,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             ToastUtil.showToast("密码不能为空！！！");
         }else {
             //TODO:联网进行账号密码判断
-            Activity activity = ActivityUtils.peek();
+            //TODO:写入登录信息到内存和SP中
             //写入登录信息到内存和SP中
             /** 登录逻辑处理 */
+            Activity activity = ActivityUtils.peek();
             Intent intent = new Intent();
             intent.setClass(activity, MainActivity.class);
             ActivityUtils.push(MainActivity.class, intent);

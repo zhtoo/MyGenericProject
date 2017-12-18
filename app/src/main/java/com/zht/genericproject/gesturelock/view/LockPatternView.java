@@ -52,6 +52,8 @@ import java.util.TimerTask;
  * Is also capable of displaying a static pattern in "in progress", "wrong" or
  * "correct" states.
  * 还能够显示一个静态模式的“进步”,“错误”或“正确”状态。
+ *
+ * @DES:锁屏界面的手势识别图（九宫格）
  */
 public class LockPatternView extends View {
     // Aspect to use when rendering this view

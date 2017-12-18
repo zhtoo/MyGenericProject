@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.zht.genericproject.R;
 import com.zht.genericproject.gesturelock.logic.LockLogic;
@@ -20,10 +20,10 @@ import java.util.List;
  * Description: Activity基类
  * 这并不是非常完善的基类，有其他activity都有的操作，都可以写在这个类上
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends TitleBarActivity {
     static final String TAG = "BaseActivity";
-    public  float screenWidth;
-    public  float screenHeight;
+    public float screenWidth;
+    public float screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,25 @@ public class BaseActivity extends AppCompatActivity {
         //Activity切换中进入动画
         overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_in_to_left);
         screenWidth = DensityUtils.getWidth(this);
-        screenHeight =DensityUtils.getHeight(this)-getStatusBarHeight();
-
+        screenHeight = DensityUtils.getHeight(this) - getStatusBarHeight();
     }
-    public int getStatusBarHeight(){
-        int result=0;
-        int resourceId=ActivityUtils.peek().getResources().getIdentifier("status_bar_height","dimen","android");
-        if(resourceId>0){
-            result=ActivityUtils.peek().getResources().getDimensionPixelSize(resourceId);
+
+    @Override
+    public void onLeftBackward(View backwardView) {
+
+        finish();
+    }
+
+    /**
+     * 获取状态栏的高度
+     *
+     * @return
+     */
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = ActivityUtils.peek().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = ActivityUtils.peek().getResources().getDimensionPixelSize(resourceId);
         }
         return result;
     }
@@ -81,8 +92,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        FragmentManager fm    = getSupportFragmentManager();
-        int             index = requestCode >> 16;
+        FragmentManager fm = getSupportFragmentManager();
+        int index = requestCode >> 16;
         if (index != 0) {
             index--;
             if (fm.getFragments() == null || index < 0

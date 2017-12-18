@@ -241,6 +241,5 @@ public class CrashHandler implements UncaughtExceptionHandler {
      */
     private void uploadExceptionToServer() {
         // TODO: 2017/10/12  上传异常信息到你的服务器上
-
     }
 }

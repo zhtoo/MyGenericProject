@@ -46,6 +46,7 @@ public class RegisterFirstActivty extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.register_get_verification_code:
                 ToastUtil.showToast("注册码");
