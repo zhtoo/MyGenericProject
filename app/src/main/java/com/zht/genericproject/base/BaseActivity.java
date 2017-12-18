@@ -38,7 +38,6 @@ public class BaseActivity extends TitleBarActivity {
 
     @Override
     public void onLeftBackward(View backwardView) {
-
         finish();
     }
 

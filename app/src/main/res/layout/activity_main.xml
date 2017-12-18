@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zht.genericproject.activity.MainActivity">
 
-    <TextView
+
+    <!--切换fragment的容器-->
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--引入底部FragmentTabHost框架,用于控制切换fragment的工具-->
+        <android.support.v4.app.FragmentTabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/white"/>
+        <!--替换中间加号-->
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:background="@drawable/btn_add_selector"/>
+
+    </FrameLayout>
+
+
+
+   <!--
+   <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="Hello World!\nThis is my first generic project.\nYou can look my code from this project.\ngit adress:https:www.github.com/zhtoo/MyGenericProject.git"/>
 
 
+-->
 
 
 
 
 
-
-</RelativeLayout>
+</LinearLayout>
