@@ -81,6 +81,8 @@ public class GuideActivity extends BaseActivity {
         public void onPageSelected(int position) {
             if(position == (mGuidePicture.length-1)){
                 mAccess.setVisibility(View.VISIBLE);
+            }else {
+                mAccess.setVisibility(View.GONE);
             }
         }
 

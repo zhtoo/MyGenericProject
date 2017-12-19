@@ -11,7 +11,7 @@
 
     <!--切换fragment的容器-->
     <FrameLayout
-        android:id="@+id/fl"
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -27,7 +27,7 @@
             android:background="@android:color/white"/>
         <!--替换中间加号-->
         <ImageView
-            android:id="@+id/iv_image"
+            android:id="@+id/main_add_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

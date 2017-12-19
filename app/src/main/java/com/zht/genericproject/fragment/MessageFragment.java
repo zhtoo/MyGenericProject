@@ -13,7 +13,7 @@ import com.zht.genericproject.base.BaseFragment;
  * @email： 820159571@qq.com
  *  
  */
-public class TweetFragment extends BaseFragment {
+public class MessageFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

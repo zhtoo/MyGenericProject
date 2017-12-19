@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+   <!-- /////主题相关////////////////////////////////////////////////////////////////-->
+    <attr name="themeColor" format="color|reference"/>
+    <attr name="widgetBackground" format="color|reference"/>
+    <attr name="widgetBackgroundDark" format="color|reference"/>
+    <attr name="widgetBackgroundTitle" format="color|reference"/>
 
     <!--锁屏界面-->
     <declare-styleable name="LockPatternView">
