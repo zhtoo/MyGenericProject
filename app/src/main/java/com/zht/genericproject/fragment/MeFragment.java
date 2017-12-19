@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseFragment;
+import com.zht.genericproject.util.StatusBarUtils;
 import com.zht.genericproject.view.CircleImageView;
 import com.zht.genericproject.view.SolarSystemView;
 
@@ -57,11 +58,18 @@ public class MeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me, container, false);
         unbinder = ButterKnife.bind(this, view);
+        measureTitleBarHeight();
         initSolar();
         return view;
     }
 
-
+    private void measureTitleBarHeight() {
+        if (meShowMyInfo != null) {
+            meShowMyInfo.setPadding(meShowMyInfo.getLeft(),
+                    StatusBarUtils.getStatusBarHeight(getContext()),
+                    meShowMyInfo.getRight(), meShowMyInfo.getBottom());
+        }
+    }
 
 
     private int mMaxRadius;
@@ -79,8 +87,8 @@ public class MeFragment extends BaseFragment {
             root.post(new Runnable() {
                 @Override
                 public void run() {
-
                     if (meShowMyInfo == null) return;
+
                     int width = meShowMyInfo.getWidth();
                     float rlShowInfoX = meShowMyInfo.getX();
 
@@ -90,9 +98,17 @@ public class MeFragment extends BaseFragment {
                     float x = mePortrait.getX();
                     float y = mePortrait.getY();
                     int portraitWidth = mePortrait.getWidth();
+                    int portraitHeight = mePortrait.getHeight();
 
-                    mPx = x + +rlShowInfoX + (width >> 1);
-                    mPy = y1 + y + (height - y) / 2;
+                    mPx = x + rlShowInfoX + (width >> 1);
+//                    mPy = y1 + y + (height - y) / 2 + 2* StatusBarUtils.getStatusBarHeight(getContext());
+
+                    //小了
+                        mPy = y1 + y +(height - y) / 2+
+
+                    StatusBarUtils.getStatusBarHeight(getContext())
+                        ;
+
                     mMaxRadius = (int) (meViewSolarSystem.getHeight() - mPy + 250);
                     mR = (portraitWidth >> 1);
 
@@ -126,18 +142,6 @@ public class MeFragment extends BaseFragment {
         }
         solarSystemView.setPivotPoint(px, py);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override

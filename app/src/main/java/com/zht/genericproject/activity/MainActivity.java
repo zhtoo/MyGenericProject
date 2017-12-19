@@ -1,6 +1,5 @@
 package com.zht.genericproject.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.widget.Toast;
 
 import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseActivity;
-import com.zht.genericproject.fragment.HomeFragment;
 import com.zht.genericproject.fragment.ExploreFragment;
+import com.zht.genericproject.fragment.HomeFragment;
 import com.zht.genericproject.fragment.MeFragment;
 import com.zht.genericproject.fragment.MessageFragment;
 
@@ -26,7 +25,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hideTitleBar(Color.TRANSPARENT);
+        hideTitleBar();
         setContentView(R.layout.activity_main);
 
         initView();

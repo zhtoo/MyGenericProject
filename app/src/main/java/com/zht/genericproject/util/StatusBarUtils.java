@@ -2,6 +2,7 @@ package com.zht.genericproject.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -10,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
-import java.lang.reflect.Field;
 
 /**
  * 作者：zhanghaitao on 2017/12/19 16:06
@@ -91,20 +90,44 @@ public class StatusBarUtils {
      * @return
      */
     public static int getStatusBarHeight(Context context) {
-        Class<?> c = null;
-        Object obj = null;
-        Field field = null;
-        int x = 0, statusBarHeight = 0;
-        try {
-            c = Class.forName("com.android.internal.R$dimen");
-            obj = c.newInstance();
-            field = c.getField("status_bar_height");
-            x = Integer.parseInt(field.get(obj).toString());
-            statusBarHeight = context.getResources().getDimensionPixelSize(x);
-        } catch (Exception e1) {
-            e1.printStackTrace();
+//        Class<?> c = null;
+//        Object obj = null;
+//        Field field = null;
+//        int x = 0, statusBarHeight = 0;
+//        try {
+//            c = Class.forName("com.android.internal.R$dimen");
+//            obj = c.newInstance();
+//            field = c.getField("status_bar_height");
+//            x = Integer.parseInt(field.get(obj).toString());
+//            statusBarHeight = context.getResources().getDimensionPixelSize(x);
+//        } catch (Exception e1) {
+//            e1.printStackTrace();
+//        }
+//        return statusBarHeight;
+
+        int STATUS_BAR_HEIGHT =0;
+        if (STATUS_BAR_HEIGHT > 0)
+            return STATUS_BAR_HEIGHT;
+
+        Resources resources = context.getResources();
+        int resourceId = context.getResources().
+                getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            STATUS_BAR_HEIGHT = context.getResources().getDimensionPixelSize(resourceId);
+            //TLog.d(TAG, String.format("Get status bar height %s", STATUS_BAR_HEIGHT));
+        } else {
+            try {
+                Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+                Object object = clazz.newInstance();
+                int height = Integer.parseInt(clazz.getField("status_bar_height")
+                        .get(object).toString());
+                STATUS_BAR_HEIGHT = resources.getDimensionPixelSize(height);
+            } catch (Exception e) {
+//                e.printStackTrace();
+            }
         }
-        return statusBarHeight;
+        return STATUS_BAR_HEIGHT;
+
     }
 
     /**

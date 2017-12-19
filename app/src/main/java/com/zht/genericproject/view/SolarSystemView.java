@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * 类太阳系星球转动
+ * Created by zht on 17/3/20.
  */
 public class SolarSystemView extends View implements Runnable {
 
@@ -37,27 +38,42 @@ public class SolarSystemView extends View implements Runnable {
     private ValueAnimator mAccelerateAnimator;
     private ValueAnimator mDecelerateAnimator;
 
+    //构造方法
     public SolarSystemView(Context context) {
         this(context, null);
     }
 
+    //构造方法
     public SolarSystemView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
+    /**
+     * 构造方法
+     *
+     * @param context      上下文
+     * @param attrs        传递资源文件
+     * @param defStyleAttr
+     */
     public SolarSystemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         planets = new ArrayList<>();
 
-        mTrackPaint = new Paint();
-        mTrackPaint.setStyle(Paint.Style.STROKE);
+        mTrackPaint = new Paint();//绘画行星轨迹的画笔
+        mTrackPaint.setStyle(Paint.Style.STROKE);//描边
         mTrackPaint.setAntiAlias(true);
 
-        mPlanetPaint = new Paint();
-        mPlanetPaint.setStyle(Paint.Style.FILL);
+        mPlanetPaint = new Paint();//绘画行星的画笔
+        mPlanetPaint.setStyle(Paint.Style.FILL);//布满整个屏幕
         mPlanetPaint.setAntiAlias(true);
     }
 
+    /**
+     * 设置中心点
+     *
+     * @param x 在屏幕上的x坐标
+     * @param y 在屏幕上的y坐标
+     */
     public void setPivotPoint(float x, float y) {
         pivotX = x;
         pivotY = y;
@@ -65,6 +81,12 @@ public class SolarSystemView extends View implements Runnable {
         prepare();
     }
 
+    /**
+     * 添加行星的集合（有多少个就加多少个）
+     * 这个方法是需要去实现的
+     *
+     * @param planets
+     */
     public void addPlanets(List<Planet> planets) {
         this.planets.addAll(planets);
     }
@@ -73,23 +95,27 @@ public class SolarSystemView extends View implements Runnable {
         planets.add(planet);
     }
 
+    /**
+     * 移除所有的行星
+     */
     public void clear() {
         planets.clear();
     }
 
+    /**
+     * （同步） 准备
+     */
     public synchronized void prepare() {
+        //没有行星，就不执行
         if (planets.size() == 0) return;
 
         if (mCacheBitmap != null) {
             mCacheBitmap.recycle();
             mCacheBitmap = null;
         }
-        int w = getWidth();
-        int h = getHeight();
-        if (w == 0 || h == 0)
-            return;
-        mCacheBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(mCacheBitmap);
+        mCacheBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        //宽、高、透明度
+        Canvas canvas = new Canvas(mCacheBitmap);//将图片添加到画布中
         if (getBackground() != null) {
             getBackground().draw(canvas);
         }
@@ -97,6 +123,7 @@ public class SolarSystemView extends View implements Runnable {
             canvas.drawRect(0, 0, getWidth(), getHeight(), mBackgroundPaint);
         }
         for (Planet planet : planets) {
+            //绘画轨迹
             mTrackPaint.setStrokeWidth(planet.getTrackWidth());
             mTrackPaint.setColor(planet.getTrackColor());
             canvas.drawCircle(pivotX, pivotY, planet.getRadius(), mTrackPaint);
@@ -122,12 +149,25 @@ public class SolarSystemView extends View implements Runnable {
         prepare();
     }
 
+    /**
+     * 当尺寸发生改变
+     *
+     * @param w
+     * @param h
+     * @param oldw
+     * @param oldh
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         prepare();
     }
 
+    /**
+     * 绘制方法
+     *
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         if (planets.size() == 0) return;
@@ -153,23 +193,52 @@ public class SolarSystemView extends View implements Runnable {
         if (paintCount < 0) paintCount = 0;
     }
 
+    /**
+     * 将布置重画
+     */
     private void postRepaint() {
         removeCallbacks(this);
         postDelayed(this, mFlushRate);
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
+        //使无效；使无价值
         invalidate();
         postRepaint();
     }
 
+    /**
+     * Attached:
+     * adj. 附加的；依恋的，充满爱心的
+     * v. 附上（attach的过去分词）
+     * This is called when the view is attached to a window.  At this point it
+     * has a Surface and will start drawing.  Note that this function is
+     * guaranteed to be called before {@link #onDraw(android.graphics.Canvas)},
+     * however it may be called any time before the first onDraw -- including
+     * before or after {@link #onMeasure(int, int)}.
+     * 当（自定义||系统的）view被添加到一个窗口时这个方法被调用。在这一点的基础上它有一个Surface并且开始绘画。
+     * 注意,这个函数一定是在onDraw方法之前被调用，然而这个方法会在第一次执行onDraw之前的任何时候被调用，
+     * 包括在onMeasure方法执行之后。
+     */
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         prepare();
     }
 
+    /**
+     *  on 在……时候
+     *  adj. 分离的，分开的；超然的
+     *  Detached
+     *  v. 分离
+     *  This is called when the view is detached from a window.  At this point it
+     *  no longer has a surface for drawing.
+     *  当这个view从一个窗口脱离（销毁||制空）时该方法被调用。在这一点的基础上它不再有为了绘制的surface
+     */
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -179,8 +248,14 @@ public class SolarSystemView extends View implements Runnable {
         }
     }
 
+    /**
+     * 加速动画
+     *
+     * @return
+     */
     private ValueAnimator getAccelerateAnimator() {
         if (mAccelerateAnimator != null) return mAccelerateAnimator;
+        // public static final int FLUSH_RATE_LIMITATION = 16;//最小速率
         mAccelerateAnimator = ValueAnimator.ofFloat(mFlushRate, FLUSH_RATE_LIMITATION);
         mAccelerateAnimator.setEvaluator(new FloatEvaluator());
         mAccelerateAnimator.setInterpolator(new DecelerateInterpolator());
@@ -194,8 +269,13 @@ public class SolarSystemView extends View implements Runnable {
         return mAccelerateAnimator;
     }
 
+    /**
+     * 减速动画
+     * @return
+     */
     private ValueAnimator getDecelerateAnimator() {
         if (mDecelerateAnimator != null) return mDecelerateAnimator;
+        // public static final int FLUSH_RATE = 40;
         mDecelerateAnimator = ValueAnimator.ofFloat(mFlushRate, FLUSH_RATE);
         mDecelerateAnimator.setEvaluator(new FloatEvaluator());
         mDecelerateAnimator.setInterpolator(new AccelerateInterpolator());
@@ -211,6 +291,9 @@ public class SolarSystemView extends View implements Runnable {
 
     // 都是在主线程内操作,所以不会有生产者消费者问题
 
+    /**
+     *加速
+     */
     public void accelerate() {
         if (mFlushRate == FLUSH_RATE_LIMITATION) return;
         mFlushRate = FLUSH_RATE; // reset flush rate
@@ -220,6 +303,9 @@ public class SolarSystemView extends View implements Runnable {
         animator.start();
     }
 
+    /**
+     * 减速
+     */
     public void decelerate() {
         if (mAccelerateAnimator != null && mAccelerateAnimator.isRunning()) {
             mAccelerateAnimator.cancel();
@@ -237,16 +323,20 @@ public class SolarSystemView extends View implements Runnable {
         animator.start();
     }
 
+    /**
+     * 行星
+     */
     public static class Planet {
-        private int mRadius = 100;
-        private int mSelfRadius = 6;
-        private int mTrackWidth = 1;
-        private int mColor = 0XFF6FDB94;
-        private int mTrackColor = 0XFF6FDB94;
-        private float mAngleRate = 0.01F;
-        private int mOriginAngle = 0;
-        private boolean isClockwise = true;
+        private int mRadius = 100;//半径
+        private int mSelfRadius = 8;//自己的半径 绘画行星的半径
+        private int mTrackWidth = 1;//轨迹宽度
+        private int mColor = 0XFF6FDB94;//行星的颜色
+        private int mTrackColor = 0XFF6FDB94;//轨迹的颜色
+        private float mAngleRate = 0.01F; //角率
+        private int mOriginAngle = 0;  //起始角度
+        private boolean isClockwise = true; //顺时针旋转
 
+        //下面是以上变量的set/get方法，在需要设置或者获取相关值的时候可以获取
         public int getRadius() {
             return mRadius;
         }
