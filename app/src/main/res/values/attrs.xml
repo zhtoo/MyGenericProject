@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-   <!-- /////主题相关////////////////////////////////////////////////////////////////-->
+    <!-- /////主题相关////////////////////////////////////////////////////////////////-->
     <attr name="themeColor" format="color|reference"/>
     <attr name="widgetBackground" format="color|reference"/>
     <attr name="widgetBackgroundDark" format="color|reference"/>
@@ -14,6 +14,12 @@
         <attr name="aspect" format="string"/>
     </declare-styleable>
 
-
+    <!--圆形的ImageView-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension"/>
+        <attr name="civ_border_color" format="color"/>
+        <attr name="civ_border_overlay" format="boolean"/>
+        <attr name="civ_fill_color" format="color"/>
+    </declare-styleable>
 
 </resources>

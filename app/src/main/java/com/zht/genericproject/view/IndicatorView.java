@@ -14,7 +14,7 @@ import android.view.View;
  * @describe:GuideActivity的指示器
  */
 
-public class Indicator extends View {
+public class IndicatorView extends View {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -31,13 +31,13 @@ public class Indicator extends View {
     //view的中心(Y)
     private int centerHeight;
 
-
     private int mInterval = 30; //间距
+
+    private int mCircleCenterInterval; //圆心间距
+
     private int mRadius = 10; //小圆球的半径
-    private int mQuotient;   //商数
-    private int mRemainder;   //余数
     private int mStartCoordinate; //开始坐标
-    private int mCurrentCoordinate; //开始坐标
+    private int mCurrentCoordinate; //选中小圆球开始坐标
     private int count;     //小圆球的数量
 
 
@@ -45,15 +45,14 @@ public class Indicator extends View {
     private int paintCurrentCircleColor = Color.argb(255, 200, 0, 0);
     private int paintNormalCircleColor = Color.parseColor("#CCCCCC");
 
-
     //该方法在我们java代码添加控件时回调
-    public Indicator(Context context) {
+    public IndicatorView(Context context) {
         super(context);
         initPaint();
     }
 
     //该方法在我们XML文件里添加控件时回调
-    public Indicator(Context context, AttributeSet attrs) {
+    public IndicatorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initPaint();
     }
@@ -81,6 +80,17 @@ public class Indicator extends View {
         height = MeasureSpec.getSize(heightMeasureSpec);
         centerWidth = width / 2;
         centerHeight = height / 2;
+        mCircleCenterInterval = 2 * mRadius + mInterval;
+
+        if (count > 0) {
+            mStartCoordinate = centerWidth - ((count - 1) * mCircleCenterInterval) / 2;
+        } else {
+            throw new IllegalArgumentException("数量必须初始化！");
+        }
+
+        if (mCurrentCoordinate == 0) {
+            mCurrentCoordinate = mStartCoordinate;
+        }
 
     }
 
@@ -88,53 +98,65 @@ public class Indicator extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (count > 0) {
-            if (mRemainder == 0) {
-                mStartCoordinate = (int) (centerWidth - ((2 * mQuotient + 0.5) * mRadius + mQuotient * mInterval));
-            } else {
-                mStartCoordinate = (int) (centerWidth - (2 * mQuotient * mRadius + (mQuotient - 0.5) * mInterval));
-            }
-            if (mCurrentCoordinate == 0) {
-                mCurrentCoordinate = mStartCoordinate + mRadius;
-            }
 
-            //画默认的圆
-            for (int i = 0; i < count; i++) {
-                canvas.drawCircle(mStartCoordinate + mRadius + i * (2 * mRadius + mInterval),
-                        centerHeight, mRadius,
-                        mNormalPaint);
-            }
-            //画当前的圆
-            canvas.drawCircle(mCurrentCoordinate,
-                    centerHeight, mRadius,
-                    mCurrentPaint);
-        } else {
-            throw new IllegalArgumentException("数量必须初始化！");
+        //画默认的圆
+        for (int i = 0; i < count; i++) {
+            canvas.drawCircle(mStartCoordinate + i * mCircleCenterInterval, centerHeight, mRadius,
+                    mNormalPaint);
         }
-
+        //画当前的圆
+        canvas.drawCircle(mCurrentCoordinate, centerHeight, mRadius,
+                mCurrentPaint);
     }
-
-
 
 
     public void setoffset(int position, float positionOffset) {
 
-        if(mCurrentCoordinate !=0){
-            mCurrentCoordinate = (int) (mStartCoordinate + mRadius +
-                    position * (2 * mRadius + mInterval) +
-                    positionOffset * (2 * mRadius + mInterval));
+        if (mCurrentCoordinate != 0) {
+            mCurrentCoordinate = (int) (mStartCoordinate +
+                    (  position+ positionOffset)* mCircleCenterInterval);
         }
-        //关键：重新绘制自定义view的方法，十分常用
+        //关键：重新绘制自定义view的方法,十分常用
         invalidate();
     }
 
     public void setCount(int count) {
         this.count = count;
-        mQuotient = count / 2;   //商数
-        mRemainder = count % 2;   //余数 ==0 是偶数
     }
 
     public void getCount(int count) {
         this.count = count;
+    }
+
+    public int getmInterval() {
+        return mInterval;
+    }
+
+    public void setmInterval(int mInterval) {
+        this.mInterval = mInterval;
+    }
+
+    public int getmRadius() {
+        return mRadius;
+    }
+
+    public void setmRadius(int mRadius) {
+        this.mRadius = mRadius;
+    }
+
+    public int getPaintCurrentCircleColor() {
+        return paintCurrentCircleColor;
+    }
+
+    public void setPaintCurrentCircleColor(int paintCurrentCircleColor) {
+        this.paintCurrentCircleColor = paintCurrentCircleColor;
+    }
+
+    public int getPaintNormalCircleColor() {
+        return paintNormalCircleColor;
+    }
+
+    public void setPaintNormalCircleColor(int paintNormalCircleColor) {
+        this.paintNormalCircleColor = paintNormalCircleColor;
     }
 }

@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.zht.genericproject.R;
 import com.zht.genericproject.base.BaseActivity;
 import com.zht.genericproject.util.ActivityUtils;
-import com.zht.genericproject.view.Indicator;
+import com.zht.genericproject.view.IndicatorView;
 
 /**
  * 作者：zhanghaitao on 2017/12/18 14:58
@@ -29,7 +29,7 @@ public class GuideActivity extends BaseActivity {
 
 
     private ViewPager mViewPager;
-    private Indicator mIndicator;
+    private IndicatorView mIndicator;
 
     private int[] mGuidePicture = {
             R.drawable.ic_guide1,
@@ -37,7 +37,6 @@ public class GuideActivity extends BaseActivity {
             R.drawable.ic_guide3,
             R.drawable.ic_guide4,
             R.drawable.ic_guide5,
-
     };
     private Button mAccess;
 
@@ -47,7 +46,7 @@ public class GuideActivity extends BaseActivity {
         setContentView(R.layout.activity_guide);
         hideTitleBar();
         mViewPager = (ViewPager) findViewById(R.id.guide_view_pager);
-        mIndicator = (Indicator) findViewById(R.id.guide_pager_indicator);
+        mIndicator = (IndicatorView) findViewById(R.id.guide_pager_indicator);
         mAccess = (Button) findViewById(R.id.guide_access);
 
         //FZXKJW.TTF  方正行楷简体
@@ -68,6 +67,11 @@ public class GuideActivity extends BaseActivity {
         //设置ViewPager适配器
         mViewPager.setAdapter(new GuidePagerAdapter());
         mIndicator.setCount(mGuidePicture.length);
+
+        if(mGuidePicture.length == 1){
+            mIndicator.setVisibility(View.GONE);
+            mAccess.setVisibility(View.VISIBLE);
+        }
 
         mViewPager.setCurrentItem(0);
          //设置ViewPager的监听器

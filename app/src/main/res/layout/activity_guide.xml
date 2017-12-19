@@ -25,7 +25,7 @@
         android:textSize="18sp"
         android:text="立即体验"/>
 
-    <com.zht.genericproject.view.Indicator
+    <com.zht.genericproject.view.IndicatorView
         android:id="@+id/guide_pager_indicator"
         android:layout_width="match_parent"
         android:layout_height="20dp"
