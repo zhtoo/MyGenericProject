@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 作者：zhanghaitao on 2017/12/20 16:19
  * 邮箱：820159571@qq.com
  *
- * @describe:
+ * @describe:翻页指示器适配器
  */
 
 public class CBPageChangeListener implements ViewPager.OnPageChangeListener {

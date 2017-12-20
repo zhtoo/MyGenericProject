@@ -12,7 +12,7 @@ import android.widget.Scroller;
  */
 
 public class ViewPagerScroller extends Scroller {
-    private int mScrollDuration = 1200;
+    private int mScrollDuration = 1200;// 滑动速度,值越大滑动越慢，滑动太快会使3d效果不明显
 
     public ViewPagerScroller(Context context) {
         super(context);

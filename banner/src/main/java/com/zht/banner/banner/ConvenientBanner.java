@@ -24,7 +24,7 @@ import static com.zht.banner.R.id.cbLoopViewPager;
  * 作者：zhanghaitao on 2017/12/20 16:20
  * 邮箱：820159571@qq.com
  *
- * @describe:
+ * @describe:页面翻转控件，极方便的广告栏、支持无限循环，自动翻页，翻页特效
  */
 
 public class ConvenientBanner<T> extends LinearLayout {
@@ -83,7 +83,10 @@ public class ConvenientBanner<T> extends LinearLayout {
 
         return this;
     }
-
+    /**
+     * 通知数据变化
+     * 如果只是增加数据建议使用 notifyDataSetAdd()
+     */
     public void notifyDataSetChanged() {
         this.viewPager.getAdapter().notifyDataSetChanged();
         if (this.page_indicatorId != null) {
@@ -91,12 +94,20 @@ public class ConvenientBanner<T> extends LinearLayout {
         }
 
     }
-
+    /**
+     * 设置底部指示器是否可见
+     *
+     * @param visible
+     */
     public ConvenientBanner<T> setPointViewVisible(boolean visible) {
         this.loPageTurningPoint.setVisibility(visible ? VISIBLE : GONE);
         return this;
     }
-
+    /**
+     * 底部指示器资源图片
+     *
+     * @param page_indicatorId
+     */
     public ConvenientBanner<T> setPageIndicator(int[] page_indicatorId) {
         this.loPageTurningPoint.removeAllViews();
         this.mPointViews.clear();
@@ -122,7 +133,11 @@ public class ConvenientBanner<T> extends LinearLayout {
             return this;
         }
     }
-
+    /**
+     * 指示器的方向
+     * @param align  三个方向：居左 （RelativeLayout.ALIGN_PARENT_LEFT），居中 （RelativeLayout.CENTER_HORIZONTAL），居右 （RelativeLayout.ALIGN_PARENT_RIGHT）
+     * @return
+     */
     public ConvenientBanner<T> setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign align) {
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) this.loPageTurningPoint.getLayoutParams();
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, align == ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_LEFT ? -1 : 0);
@@ -131,11 +146,18 @@ public class ConvenientBanner<T> extends LinearLayout {
         this.loPageTurningPoint.setLayoutParams(layoutParams);
         return this;
     }
-
+    /***
+     * 是否开启了翻页
+     * @return
+     */
     public boolean isTurning() {
         return this.turning;
     }
-
+    /***
+     * 开始翻页
+     * @param autoTurningTime 自动翻页时间
+     * @return
+     */
     public ConvenientBanner<T> startTurning(long autoTurningTime) {
         if (this.turning) {
             this.stopTurning();
@@ -152,7 +174,12 @@ public class ConvenientBanner<T> extends LinearLayout {
         this.turning = false;
         this.timeHandler.removeCallbacks(this.adSwitchTask);
     }
-
+    /**
+     * 自定义翻页动画效果
+     *
+     * @param transformer
+     * @return
+     */
     public ConvenientBanner<T> setPageTransformer(ViewPager.PageTransformer transformer) {
         this.viewPager.setPageTransformer(true, transformer);
         return this;
@@ -168,7 +195,9 @@ public class ConvenientBanner<T> extends LinearLayout {
 
         return this;
     }
-
+    /**
+     * 设置ViewPager的滑动速度
+     */
     private void initViewPagerScroll() {
         try {
             Field e = null;
@@ -193,19 +222,21 @@ public class ConvenientBanner<T> extends LinearLayout {
     public void setManualPageable(boolean manualPageable) {
         this.viewPager.setCanScroll(manualPageable);
     }
-
+    //触碰控件的时候，翻页应该停止，离开的时候如果之前是开启了翻页的话则重新启动翻页
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == 1) {
+            // 开始翻页
             if (this.canTurn) {
                 this.startTurning(this.autoTurningTime);
             }
         } else if (ev.getAction() == 0 && this.canTurn) {
+            // 停止翻页
             this.stopTurning();
         }
 
         return super.dispatchTouchEvent(ev);
     }
-
+    //获取当前的页面index
     public int getCurrentPageIndex() {
         return this.viewPager != null ? this.viewPager.getCurrentItem() : -1;
     }
