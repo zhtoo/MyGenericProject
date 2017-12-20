@@ -39,6 +39,7 @@ public class GuideActivity extends BaseActivity {
             R.drawable.ic_guide5,
     };
     private Button mAccess;
+    private Button mSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +49,15 @@ public class GuideActivity extends BaseActivity {
         mViewPager = (ViewPager) findViewById(R.id.guide_view_pager);
         mIndicator = (IndicatorView) findViewById(R.id.guide_pager_indicator);
         mAccess = (Button) findViewById(R.id.guide_access);
+        mSkip = (Button) findViewById(R.id.guide_skip);
 
         //FZXKJW.TTF  方正行楷简体
         Typeface typeFace =Typeface.createFromAsset(getAssets(),"fonts/FZXKJW.TTF");
         //使用字体
         mAccess.setTypeface(typeFace);
-        mAccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Activity activity = ActivityUtils.peek();
-                Intent intent = new Intent();
-                intent.setClass(activity, MainActivity.class);
-                ActivityUtils.push(MainActivity.class, intent);
-                ActivityUtils.pop(activity);
-            }
-        });
+        mSkip.setTypeface(typeFace);
+        mAccess.setOnClickListener(btClickListener);
+        mSkip.setOnClickListener(btClickListener);
 
         //设置ViewPager适配器
         mViewPager.setAdapter(new GuidePagerAdapter());
@@ -97,6 +92,20 @@ public class GuideActivity extends BaseActivity {
         });
 
     }
+
+
+    private  View.OnClickListener btClickListener  = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            Activity activity = ActivityUtils.peek();
+            Intent intent = new Intent();
+            intent.setClass(activity, MainActivity.class);
+            ActivityUtils.push(MainActivity.class, intent);
+            ActivityUtils.pop(activity);
+        }
+    };
+
 
 
     private class  GuidePagerAdapter extends PagerAdapter{

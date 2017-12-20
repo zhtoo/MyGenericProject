@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
@@ -330,8 +331,8 @@ public class SolarSystemView extends View implements Runnable {
         private int mRadius = 100;//半径
         private int mSelfRadius = 8;//自己的半径 绘画行星的半径
         private int mTrackWidth = 1;//轨迹宽度
-        private int mColor = 0XFF6FDB94;//行星的颜色
-        private int mTrackColor = 0XFF6FDB94;//轨迹的颜色
+        private int mColor = Color.parseColor("#CCCCCC");//行星的颜色
+        private int mTrackColor = Color.parseColor("#CCCCCC");//轨迹的颜色
         private float mAngleRate = 0.01F; //角率
         private int mOriginAngle = 0;  //起始角度
         private boolean isClockwise = true; //顺时针旋转

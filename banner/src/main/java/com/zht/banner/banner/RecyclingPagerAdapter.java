@@ -1,0 +1,67 @@
+package com.zht.banner.banner;
+
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+
+/**
+ * 作者：zhanghaitao on 2017/12/20 16:23
+ * 邮箱：820159571@qq.com
+ *
+ * @describe:
+ */
+
+public abstract class RecyclingPagerAdapter extends PagerAdapter {
+    static final int IGNORE_ITEM_VIEW_TYPE = -1;
+    private final RecycleBin recycleBin;
+
+    public RecyclingPagerAdapter() {
+        this(new RecycleBin());
+    }
+
+    RecyclingPagerAdapter(RecycleBin recycleBin) {
+        this.recycleBin = recycleBin;
+        recycleBin.setViewTypeCount(this.getViewTypeCount());
+    }
+
+    public void notifyDataSetChanged() {
+        this.recycleBin.scrapActiveViews();
+        super.notifyDataSetChanged();
+    }
+
+    public final Object instantiateItem(ViewGroup container, int position) {
+        int viewType = this.getItemViewType(position);
+        View view = null;
+        if(viewType != -1) {
+            view = this.recycleBin.getScrapView(position, viewType);
+        }
+
+        view = this.getView(position, view, container);
+        container.addView(view);
+        return view;
+    }
+
+    public final void destroyItem(ViewGroup container, int position, Object object) {
+        View view = (View)object;
+        container.removeView(view);
+        int viewType = this.getItemViewType(position);
+        if(viewType != -1) {
+            this.recycleBin.addScrapView(view, position, viewType);
+        }
+
+    }
+
+    public final boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    public abstract View getView(int var1, View var2, ViewGroup var3);
+}

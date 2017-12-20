@@ -1,5 +1,6 @@
 package com.zht.genericproject.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.zht.genericproject.fragment.ExploreFragment;
 import com.zht.genericproject.fragment.HomeFragment;
 import com.zht.genericproject.fragment.MeFragment;
 import com.zht.genericproject.fragment.MessageFragment;
+import com.zht.genericproject.util.StatusBarUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity {
         hideTitleBar();
         setContentView(R.layout.activity_main);
 
+        StatusBarUtils.setColor(this, Color.parseColor("#33000000"));
         initView();
         intiTab();
         initLisener();

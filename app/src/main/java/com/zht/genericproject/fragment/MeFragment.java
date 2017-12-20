@@ -32,25 +32,25 @@ public class MeFragment extends BaseFragment {
     @BindView(R.id.me_view_solar_system)
     SolarSystemView meViewSolarSystem;
     @BindView(R.id.me_setting)
-    ImageView meSetting;
+    ImageView mSetting;
     @BindView(R.id.me_zxing)
-    ImageView meZxing;
+    ImageView mZxing;
     @BindView(R.id.me_info_head_container)
-    FrameLayout meInfoHeadContainer;
+    FrameLayout mHeadContainer;
     @BindView(R.id.me_portrait)
-    CircleImageView mePortrait;
+    CircleImageView mPortrait;
     @BindView(R.id.me_gender)
-    ImageView meGender;
+    ImageView mGender;
     @BindView(R.id.me_info_icon_container)
-    FrameLayout meInfoIconContainer;
+    FrameLayout mIconContainer;
     @BindView(R.id.me_nick)
-    TextView meNick;
+    TextView mNick;
     @BindView(R.id.me_avail_score)
-    TextView meAvailScore;
+    TextView mAvailScore;
     @BindView(R.id.me_active_score)
-    TextView meActiveScore;
+    TextView mActiveScore;
     @BindView(R.id.me_show_my_info)
-    LinearLayout meShowMyInfo;
+    LinearLayout mShowInfo;
     Unbinder unbinder;
     private View view;
 
@@ -63,14 +63,16 @@ public class MeFragment extends BaseFragment {
         return view;
     }
 
+    /**
+     * 测量状态栏的高度，并未状态栏设置空余高度
+     */
     private void measureTitleBarHeight() {
-        if (meShowMyInfo != null) {
-            meShowMyInfo.setPadding(meShowMyInfo.getLeft(),
+        if (mShowInfo != null) {
+            mShowInfo.setPadding(mShowInfo.getLeft(),
                     StatusBarUtils.getStatusBarHeight(getContext()),
-                    meShowMyInfo.getRight(), meShowMyInfo.getBottom());
+                    mShowInfo.getRight(), mShowInfo.getBottom());
         }
     }
-
 
     private int mMaxRadius;
     private int mR;
@@ -79,7 +81,7 @@ public class MeFragment extends BaseFragment {
 
 
     /**
-     * init solar view
+     * 初始化solarSystemView
      */
     private void initSolar() {
         View root = view;
@@ -87,40 +89,31 @@ public class MeFragment extends BaseFragment {
             root.post(new Runnable() {
                 @Override
                 public void run() {
-                    if (meShowMyInfo == null) return;
+                    if (mShowInfo == null) return;
 
-                    int width = meShowMyInfo.getWidth();
-                    float rlShowInfoX = meShowMyInfo.getX();
+                    int width = mShowInfo.getWidth();
+                    float rlShowInfoX = mShowInfo.getX();
 
-                    int height = meInfoHeadContainer.getHeight();
-                    float y1 = meInfoHeadContainer.getY();
+                    int height = mIconContainer.getHeight();
+                    float y1 = mIconContainer.getY();
 
-                    float x = mePortrait.getX();
-                    float y = mePortrait.getY();
-                    int portraitWidth = mePortrait.getWidth();
-                    int portraitHeight = mePortrait.getHeight();
+                    float x = mPortrait.getX();
+                    float y = mPortrait.getY();
+                    int portraitWidth = mPortrait.getWidth();
 
                     mPx = x + rlShowInfoX + (width >> 1);
-//                    mPy = y1 + y + (height - y) / 2 + 2* StatusBarUtils.getStatusBarHeight(getContext());
-
-                    //小了
-                        mPy = y1 + y +(height - y) / 2+
-
-                    StatusBarUtils.getStatusBarHeight(getContext())
-                        ;
-
+                    mPy = y1 + y +(height - y) / 2;
                     mMaxRadius = (int) (meViewSolarSystem.getHeight() - mPy + 250);
                     mR = (portraitWidth >> 1);
 
                     updateSolar(mPx, mPy);
-
                 }
             });
         }
     }
 
     /**
-     * update solar
+     * 更新绘制solarSystemView
      *
      * @param px float
      * @param py float

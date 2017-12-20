@@ -9,7 +9,6 @@
               android:fitsSystemWindows="false"
               android:orientation="vertical">
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="220dp">
@@ -18,7 +17,7 @@
             android:id="@+id/me_view_solar_system"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#24cf5f"
+            android:background="#83c1fb"
             android:contentDescription="@null"
             android:paddingBottom="8dp"
             android:scaleType="centerCrop"
@@ -98,7 +97,7 @@
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                tools:text="thanatosx" />
+                android:text="点击头像登录" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -114,7 +113,7 @@
                     android:gravity="bottom"
                     android:textColor="#FFF"
                     android:textSize="14sp"
-                    tools:text="积分 88888" />
+                    android:text="余额 666" />
 
                 <TextView
                     android:id="@+id/me_active_score"
@@ -124,14 +123,13 @@
                     android:gravity="bottom"
                     android:textColor="#FFF"
                     android:textSize="14sp"
-                    tools:text="积分 88888"
+                    android:text="奖励金 666"
                     tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
         </LinearLayout>
 
     </FrameLayout>
-
 
 </LinearLayout>
 

@@ -2,7 +2,7 @@
 <resources>
     <!-- basic -->
     <!-- 主色调 -->
-    <color name="colorPrimary">#ffeeeeee</color>
+    <color name="colorPrimary">#83C1FB</color>
     <!-- 主题相关颜色 -->
     <color name="window_background_light">#ffeeeeee</color>
     <color name="window_background_dark">#ff303030</color>

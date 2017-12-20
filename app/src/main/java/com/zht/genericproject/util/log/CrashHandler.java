@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.zht.genericproject.MyApplication;
+import com.zht.genericproject.util.ActivityUtils;
 import com.zht.genericproject.util.PermissionCheck;
 
 import java.io.BufferedWriter;
@@ -83,7 +84,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 Logger.e(TAG, "error : ", e);
             }
             // 退出程序
-            // ActivityUtils.onExit();//在这里处理异常退出时，Activity的一些操作。
+            ActivityUtils.onExit();//在这里处理异常退出时，Activity的一些操作。
             android.os.Process.killProcess(android.os.Process.myPid());//杀死当前进程
             /**
              System.exit(0)和System.exit(1)
