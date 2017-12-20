@@ -24,7 +24,7 @@ import static com.zht.banner.R.id.cbLoopViewPager;
  * 作者：zhanghaitao on 2017/12/20 16:20
  * 邮箱：820159571@qq.com
  *
- * @describe:页面翻转控件，极方便的广告栏、支持无限循环，自动翻页，翻页特效
+ * @describe:页面翻转控件、极方便的广告栏、支持无限循环，自动翻页，翻页特效
  */
 
 public class ConvenientBanner<T> extends LinearLayout {
