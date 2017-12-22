@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ExpandableView_TextView">
+        <!-- Base style to customize inner TextView inside visible content -->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <!-- Use this style name to override the default style
+     使用这个样式名称来覆盖默认样式-->
+    <!--<style name="ExpandableView_TextView">
+
+    </style>-->
+
+</resources>

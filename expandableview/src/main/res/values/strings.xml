@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ExpandableView</string>
+
+
+    <string name="android_names">Android Version Names</string>
+    <string name="android_codes">Android Version Codes</string>
+
+</resources>

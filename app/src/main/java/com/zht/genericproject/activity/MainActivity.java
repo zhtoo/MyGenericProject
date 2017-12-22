@@ -110,7 +110,6 @@ public class MainActivity extends BaseActivity {
 
         iv_image.setBackgroundResource(iconResId);
         tv_title.setText(title);
-
         return view;
     }
 
