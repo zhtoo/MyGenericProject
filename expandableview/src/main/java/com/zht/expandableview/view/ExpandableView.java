@@ -24,15 +24,14 @@ import java.util.List;
  * 作者：zhanghaitao on 2017/12/22 10:14
  * 邮箱：820159571@qq.com
  *
- * @describe:
- * ExpandableView是只显示可见内容的View，当点击它时，它会下滑展开显示更多内容。
+ * @describe: ExpandableView是只显示可见内容的View，当点击它时，它会下滑展开显示更多内容。
  * 同时，它也可以内部再嵌套ExpandableView，ExpandableView可以一个接一个的嵌套。
  */
 public class ExpandableView extends RelativeLayout {
 
-    private static final int DURATION = 400;
+    private static final int DURATION = 400;//动画时间
 
-    private float DEGREES;
+    private float DEGREES;//旋转的度数
 
     private TextView textView;
 
@@ -91,7 +90,7 @@ public class ExpandableView extends RelativeLayout {
         });
 
 
-        //Add onPreDrawListener
+        //给contentLayout添加 onPreDrawListener
         contentLayout.getViewTreeObserver().addOnPreDrawListener(
                 new ViewTreeObserver.OnPreDrawListener() {
                     @Override
@@ -102,7 +101,7 @@ public class ExpandableView extends RelativeLayout {
                         final int widthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
                         final int heightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
                         contentLayout.measure(widthSpec, heightSpec);
-
+                        //开启动画
                         animator = slideAnimator(0, contentLayout.getMeasuredHeight());
                         return true;
                     }
@@ -110,7 +109,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Set the new Height of the visible content layout.
+     * 设置可见内容布局的新高度。
      *
      * @param newHeight
      */
@@ -119,7 +118,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Set the parent's ViewGroup
+     * 设置父类的ViewGroup
      *
      * @param outsideContentLayout
      */
@@ -128,7 +127,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Set the parent's ViewGroup, one or more than one.
+     * 设置父类的ViewGroup, 一个或多个.
      *
      * @param params
      */
@@ -139,7 +138,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Return the TextView located in the visible content.
+     * 返回位于可见内容中的TextView。
      *
      * @return
      */
@@ -148,7 +147,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Returns the Content LinearLayout, the LinearLayout that expands or collapse in a fashion way.
+     * 返回内容的线性布局，以一种方式扩展或折叠的线性布局。
      *
      * @return The Content LinearLayout
      */
@@ -157,7 +156,7 @@ public class ExpandableView extends RelativeLayout {
     }
 
     /**
-     * Add a view into the Content LinearLayout, the LinearLayout that expands or collapse in a fashion way.
+     * 将视图添加到内容线性布局中，以一种方式扩展或折叠的线性布局。
      *
      * @param newContentView
      */
@@ -193,6 +192,7 @@ public class ExpandableView extends RelativeLayout {
 
     /**
      * Set the left drawable icon, the text to display, and if you want to use the chevron icon or plus icon.
+     * 设置左边可绘制的图标，显示文本，如果你想使用chevron图标或plus图标。
      *
      * @param leftResId   - 0 for no left drawable.
      * @param stringResId
@@ -204,6 +204,7 @@ public class ExpandableView extends RelativeLayout {
 
     /**
      * Set the left drawable icon, the text to display using the plus icon by default.
+     * 设置左边可绘制的图标，在默认情况下使用+图标显示文本。
      *
      * @param leftResId - 0 for no left drawable.
      * @param text
@@ -225,6 +226,7 @@ public class ExpandableView extends RelativeLayout {
 
     /**
      * Expand animation to display the discoverable content.
+     * 展开动画以显示可发现的内容。
      */
     public void expand() {
         //set Visible

@@ -1,1 +1,1 @@
-include ':app', ':banner', ':expandableview', ':test'
+include ':app', ':banner', ':expandableview', ':test', ':bottomdialog'
