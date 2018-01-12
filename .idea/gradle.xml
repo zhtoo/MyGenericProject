@@ -12,7 +12,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/banner" />
             <option value="$PROJECT_DIR$/bottomdialog" />
+            <option value="$PROJECT_DIR$/expandablerecycler" />
             <option value="$PROJECT_DIR$/expandableview" />
+            <option value="$PROJECT_DIR$/getlocalvideolist" />
             <option value="$PROJECT_DIR$/test" />
           </set>
         </option>

@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.zht.test.sample.BottomDialogSample;
+import com.zht.test.sample.ExpandableRcyclerViewSample;
+import com.zht.test.sample.ExpandableViewSample;
+import com.zht.test.sample.VideoListSample;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         //在此处添加Activity即可
         list.add(ExpandableViewSample.class);
         list.add(BottomDialogSample.class);
+        list.add(ExpandableRcyclerViewSample.class);
+        list.add(VideoListSample.class);
 
 
         initRecycler();

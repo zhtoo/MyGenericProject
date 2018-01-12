@@ -1,4 +1,4 @@
-package com.zht.test;
+package com.zht.test.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zht.bottomdialog.SelectBottomDialog;
+import com.zht.test.R;
 
 public class BottomDialogSample extends AppCompatActivity {
 

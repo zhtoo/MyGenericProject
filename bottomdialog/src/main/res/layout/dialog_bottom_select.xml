@@ -13,7 +13,7 @@
         android:layout_marginRight="10dp"
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="5dp"
-        app:cardElevation="16dp">
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:id="@+id/dialog_bottom_container"
@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="5dp"
-        app:cardElevation="16dp">
+        app:cardElevation="0dp">
 
         <TextView
             android:id="@+id/dialog_bottom_cancel"

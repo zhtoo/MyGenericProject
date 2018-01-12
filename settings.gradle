@@ -1,1 +1,1 @@
-include ':app', ':banner', ':expandableview', ':test', ':bottomdialog'
+include ':app', ':banner', ':expandableview', ':test', ':bottomdialog', ':expandablerecycler', ':getlocalvideolist'
