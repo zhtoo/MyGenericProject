@@ -60,14 +60,14 @@ public class SelectBottomDialog extends BaseBottomDialog implements View.OnClick
         container = (LinearLayout) v.findViewById(R.id.dialog_bottom_container);
         //取消按钮
         cancel = (TextView) v.findViewById(R.id.dialog_bottom_cancel);
-        if(cancelTextSize>0){
+        if (cancelTextSize > 0) {
             cancel.setTextSize(cancelTextSize);
         }
-        if(cancelTextColor>0){
+        if (cancelTextColor > 0) {
             cancel.setTextColor(context.getResources().getColor(cancelTextColor));
         }
-
         container.removeAllViews();
+        //循环创建text
         for (int i = 0; i < itemStrings.length; i++) {
             TextView mText = new TextView(context);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -82,9 +82,9 @@ public class SelectBottomDialog extends BaseBottomDialog implements View.OnClick
             mText.setLayoutParams(textlp);
             mText.setGravity(Gravity.CENTER);
             mText.setPadding(30, 30, 30, 30);
-            mText.setTextSize(dialogTextSize>0?dialogTextSize:18);
-            mText.setTextColor(dialogTextColor>0?context.getResources().getColor(dialogTextColor):
-            Color.parseColor("#222222"));
+            mText.setTextSize(dialogTextSize > 0 ? dialogTextSize : 18);
+            mText.setTextColor(dialogTextColor > 0 ? context.getResources().getColor(dialogTextColor) :
+                    Color.parseColor("#222222"));
             mText.setText(this.itemStrings[i]);
             container.addView(mText, LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -94,13 +94,12 @@ public class SelectBottomDialog extends BaseBottomDialog implements View.OnClick
             if (i != itemStrings.length - 1) {
                 View line = new View(context);
                 //布局参数
-
                 LinearLayout.LayoutParams linelp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        lineHeight>0?lineHeight:2);
+                        lineHeight > 0 ? lineHeight : 2);
                 //设置属性
                 line.setLayoutParams(linelp);
-                line.setBackgroundColor(lineColor>0?getResources().getColor(lineColor):
+                line.setBackgroundColor(lineColor > 0 ? getResources().getColor(lineColor) :
                         Color.parseColor("#EEEEEE"));
                 container.addView(line);
             }
