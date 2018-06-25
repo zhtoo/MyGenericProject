@@ -115,7 +115,6 @@ public class Video {
 
     public LoadedImage getImage(){
         return image;
-       // <pre class="java" name="code">
     }
 
     public void setImage(LoadedImage image){

@@ -1,4 +1,4 @@
-package com.zht.getlocalvideolist;
+package com.zht.getlocalvideolist.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -125,7 +125,11 @@ public class StatusBarUtils {
         return 0xff << 24 | red << 16 | green << 8 | blue;
     }
 
-
+    /**
+     *
+     * @param view
+     * @param context
+     */
     public static void measureTitleBarHeight(View view , Context context) {
         if (view != null) {
             view.setPadding(view.getLeft(),

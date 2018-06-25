@@ -12,6 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.zht.getlocalvideolist.util.DensityUtils;
+import com.zht.getlocalvideolist.util.StatusBarUtils;
 
 import java.util.List;
 
@@ -39,7 +43,7 @@ public class VideoListActivity extends Activity {
         setContentView(R.layout.activity_local_video_list);
 
         LinearLayout mContainer = (LinearLayout) findViewById(R.id.video_container);
-        StatusBarUtils.setColor(this, Color.parseColor("#44000000"));
+        StatusBarUtils.setColor(this, Color.parseColor("#40000000"));
         StatusBarUtils.measureTitleBarHeight(mContainer, this);
         instance = this;
         AbstructProvider provider = new VideoProvider(instance);
@@ -83,6 +87,12 @@ public class VideoListActivity extends Activity {
         mRecycler.setLayoutManager(lm);
         mAdapter = new VideoRecyclerAdapter(this, listVideos);
         mRecycler.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new VideoRecyclerAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(instance, listVideos.get(position).getDisplayName(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -142,8 +152,13 @@ public class VideoListActivity extends Activity {
         @Override
         protected Object doInBackground(Object... params) {
             Bitmap bitmap = null;
+            int screenWidth = DensityUtils.getWidthPixels(VideoListActivity.this);
+
+            int width = screenWidth / 2;
+            int height = (int) (width*0.618);
+
             for (int i = 0; i < videoSize; i++) {
-                bitmap = getVideoThumbnail(listVideos.get(i).getPath(), 120, 120, Thumbnails.MINI_KIND);
+                bitmap = getVideoThumbnail(listVideos.get(i).getPath(), width, height, Thumbnails.MINI_KIND);
                 if (bitmap != null) {
                     publishProgress(new LoadedImage(bitmap));
                 }
